@@ -7,12 +7,11 @@ import java.net.Socket;
 
 public class Main {
     public static void main(String[] args) {
-        try(ServerSocket serverSocket = new ServerSocket(55555)) {
+        try(ServerSocket serverSocket = new ServerSocket(54555)) {
             Socket socket = serverSocket.accept();
-            System.out.println("Client connected on port 55555");
+            System.out.println("Client connected on port 54555");
             BufferedReader input = new BufferedReader(
-                    new InputStreamReader(socket.getInputStream())
-            );
+                    new InputStreamReader(socket.getInputStream()));
             PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
 
             while (true) {

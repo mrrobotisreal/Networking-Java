@@ -7,11 +7,10 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        try (Socket socket = new Socket("localhost", 55555)) {
+        try (Socket socket = new Socket("localhost", 54555)) {
             BufferedReader echoes = new BufferedReader(
-                    new InputStreamReader(socket.getInputStream());
-            );
-            PrintWriter stringToEcho = new PrintWriter(socket.getOutputStream());
+                    new InputStreamReader(socket.getInputStream()));
+            PrintWriter stringToEcho = new PrintWriter(socket.getOutputStream(), true);
             Scanner scanner = new Scanner(System.in);
             String echoString;
             String response;
