@@ -8,18 +8,8 @@ import java.net.Socket;
 public class Main {
     public static void main(String[] args) {
         try(ServerSocket serverSocket = new ServerSocket(54555)) {
-            Socket socket = serverSocket.accept();
-            System.out.println("Client connected on port 54555");
-            BufferedReader input = new BufferedReader(
-                    new InputStreamReader(socket.getInputStream()));
-            PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
-
             while (true) {
-                String echoString = input.readLine();
-                if (echoString.equals("exit")) {
-                    break;
-                }
-                output.println("Echo from server: " + echoString);
+                new Echoer(serverSocket.accept()).start();
             }
         } catch(IOException e) {
             System.out.println("Server exception " + e.getMessage());
@@ -27,3 +17,21 @@ public class Main {
         }
     }
 }
+
+
+
+//    Socket socket = serverSocket.accept();
+//                System.out.println("Client connected on port 54555");
+//                        BufferedReader input = new BufferedReader(
+//                        new InputStreamReader(socket.getInputStream()));
+//                        PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
+//                        String echoString = input.readLine();
+//                        try {
+//                        Thread.sleep(1000);
+//                        } catch (InterruptedException e) {
+//                        System.out.println("Thread interrupted");
+//                        }
+//                        if (echoString.equals("exit")) {
+//                        break;
+//                        }
+//                        output.println("Echo from server: " + echoString);
