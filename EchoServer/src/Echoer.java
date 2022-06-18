@@ -20,8 +20,15 @@ public class Echoer extends Thread {
 
             while (true) {
                 String echoeString = input.readLine();
+                System.out.println("Received client input: " + echoeString);
                 if (echoeString.equals("exit")) {
                     break;
+                }
+
+                try {
+                    Thread.sleep(15000);
+                } catch (InterruptedException e) {
+                    System.out.println("Thread interrupted");
                 }
 
                 output.println(echoeString);
